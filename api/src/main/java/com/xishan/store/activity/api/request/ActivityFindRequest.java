@@ -12,6 +12,8 @@ public class ActivityFindRequest implements Serializable {
 
     private Integer status;
 
+    private Integer skuId;
+
     private String description;
 
     private Integer type;

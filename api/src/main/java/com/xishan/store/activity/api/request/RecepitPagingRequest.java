@@ -17,6 +17,7 @@ public class RecepitPagingRequest extends PageCommon implements Serializable {
 
     private Integer status;
 
+
     private Long userId;
 
     private Date createdAt;

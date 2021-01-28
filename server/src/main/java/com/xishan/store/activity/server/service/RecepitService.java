@@ -40,17 +40,19 @@ public class RecepitService {
     @Value("${rocketmq.topic:createOrderTopic}")
     private String topic;
 
-    @Value("${rocketmq.goodtag:}")
-    private String tag;
 
 
 
+    private String makeCode(Long id){
 
+        return  "unique.code:"+id;
+
+    }
 
     //下秒杀单，每个人只能下一次单，使用userId拼UUID就ok了.下单,paging两个功能。
 
     public String doRecepit(RecepitRequest recepitRequest){//摘单,mq消息
-        String code = UUID.randomUUID().toString();
+        String code = makeCode(UserContext.getCurrentUser().getId());
         Recepit recepit = new Recepit();
         recepit.setActivityId(recepitRequest.getActivityId());
         recepit.setCreatedAt(new Date());
@@ -68,6 +70,8 @@ public class RecepitService {
         createOrderMessage.setRecepitId(recepit.getId());
         createOrderMessage.setSkuId(recepitRequest.getSkuId());
         createOrderMessage.setType(recepitRequest.getType());
+        createOrderMessage.setUserId(UserContext.getCurrentUser().getId());
+        createOrderMessage.setUserName(UserContext.getCurrentUser().getUserName());
         mqService.send(topic,"", JSON.toJSONString(createOrderMessage));
         return "创建单据成功";
         //发送消息

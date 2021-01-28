@@ -11,6 +11,9 @@ public class ActivityDTO implements Serializable {
 
     private String name;
     private Integer status;
+
+    private Integer skuId;
+
     private String description;
 
     private Integer type;

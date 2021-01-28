@@ -13,4 +13,8 @@ public class CreateOrderMessage implements Serializable {
     private Byte type;
     private String code;
     private Integer recepitId;
+
+    private Long userId;
+
+    private String userName;
 }

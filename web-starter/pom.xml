@@ -8,10 +8,11 @@
         <groupId>com.xishan.store</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
+
     <groupId>com.xishan.store.activity</groupId>
-    <artifactId>server-starter</artifactId>
+    <artifactId>web-starter</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>server-starter</name>
+    <name>web-starter</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -40,20 +41,8 @@
         </dependency>
         <dependency>
             <groupId>com.xishan.store.activity</groupId>
-            <artifactId>server</artifactId>
+            <artifactId>web</artifactId>
             <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.zookeeper</groupId>
-            <artifactId>zookeeper</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.curator</groupId>
-            <artifactId>curator-framework</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.curator</groupId>
-            <artifactId>curator-recipes</artifactId>
         </dependency>
     </dependencies>
 
@@ -75,7 +64,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.3.4.RELEASE</version>
                 <configuration>
-                    <mainClass>com.xishan.store.activity.server.ServerStarterApplication</mainClass>
+                    <mainClass>com.xishan.store.activity.web.WebStarterApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>

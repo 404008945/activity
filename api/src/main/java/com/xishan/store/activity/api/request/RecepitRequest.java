@@ -15,12 +15,6 @@ public class RecepitRequest implements Serializable {
 
     private Integer status;
 
-    private Long userId;
-
-    private Date createdAt;
-
-    private String code;
-
     private Integer skuId;
 
     private Integer num;

@@ -9,6 +9,8 @@ public class Activity {
 
     private Integer status;
 
+    private Integer skuId;
+
     private String description;
 
     private Integer type;
@@ -81,5 +83,13 @@ public class Activity {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public Integer getSkuId() {
+        return skuId;
+    }
+
+    public void setSkuId(Integer skuId) {
+        this.skuId = skuId;
     }
 }
