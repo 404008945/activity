@@ -54,22 +54,6 @@ public class ActivityService {
 
 
 
-    public ActivityDTO findById(ActivityFindRequest activityFindRequest){
-        //先从redis中查找
-        Object redisObj = redisUtil.get(makeRedisKey(activityFindRequest.getId()));
-        ActivityDTO activityDTO = null;
-        if(redisObj != null) {
-            activityDTO = JSON.parseObject(redisUtil.get(makeRedisKey(activityFindRequest.getId())).toString(), ActivityDTO.class);
-        }
-        if(activityDTO!= null) {
-            return activityDTO;
-        }
-        Activity activity = activityMapper.selectByPrimaryKey(activityFindRequest.getId());
-        activityDTO = BeanUtil.convertToBean(activity,ActivityDTO.class);
-        redisUtil.set(makeRedisKey(activityFindRequest.getId()),JSON.toJSONString(activityDTO));
-        return activityDTO;
-    }
-
     /**
      * 应该生效而未生效的，应该失效而未失效的两种
      */
@@ -92,6 +76,22 @@ public class ActivityService {
             update(activityUpdateRequest);
         });
         //过期仍然生效的
+    }
+
+    public ActivityDTO findById(ActivityFindRequest activityFindRequest){
+        //先从redis中查找
+        Object redisObj = redisUtil.get(makeRedisKey(activityFindRequest.getId()));
+        ActivityDTO activityDTO = null;
+        if(redisObj != null) {
+            activityDTO = JSON.parseObject(redisUtil.get(makeRedisKey(activityFindRequest.getId())).toString(), ActivityDTO.class);
+        }
+        if(activityDTO!= null) {
+            return activityDTO;
+        }
+        Activity activity = activityMapper.selectByPrimaryKey(activityFindRequest.getId());
+        activityDTO = BeanUtil.convertToBean(activity,ActivityDTO.class);
+        redisUtil.set(makeRedisKey(activityFindRequest.getId()),JSON.toJSONString(activityDTO));
+        return activityDTO;
     }
 
     private String makeRedisKey(Integer id){
